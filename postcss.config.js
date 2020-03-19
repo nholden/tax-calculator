@@ -9,10 +9,14 @@ const purgecss = require('@fullhuman/postcss-purgecss')({
   defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || []
 })
 
+console.log(process.env.NODE_ENV)
+
 module.exports = {
   plugins: [
     require("tailwindcss")("./tailwind.config.js"),
     require("autoprefixer"),
-    purgecss,
+    ...process.env.NODE_ENV === 'production'
+      ? [purgecss]
+      : []
   ],
 }
