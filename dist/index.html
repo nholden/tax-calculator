@@ -7,7 +7,10 @@
     <script src="bundle.js"></script>
   </head>
   <body class="antialiased">
-    <div class="container mx-auto" x-data="{ wages: null }">
+    <div
+      class="container mx-auto"
+      x-data="data()"
+    >
       <form class="my-2">
         <label class="flex items-center mb-2">
           <span class="mr-2">1a</span>
@@ -16,7 +19,71 @@
             type="number"
             size="10"
             class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            x-model="wages">
+            x-model="box1a"
+          >
+        </label>
+        <label class="flex items-center mb-2">
+          <span class="mr-2">1b</span>
+          <span class="flex-grow">Enter the number of pay periods you have per year</span>
+          <input
+            type="number"
+            size="10"
+            class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            x-model="box1b"
+          >
+        </label>
+        <label class="flex items-center mb-2">
+          <span class="mr-2">1c</span>
+          <span class="flex-grow">Enter the amount from Step 4(a) of the employee’s Form W-4</span>
+          <input
+            type="number"
+            size="10"
+            class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            x-model="box1c"
+          >
+        </label>
+        <label class="flex items-center mb-2">
+          <span class="mr-2">1d</span>
+          <span class="flex-grow">Divide line 1c by the number on line 1b</span>
+          <input
+            type="number"
+            size="10"
+            class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            x-bind:value="box1d()"
+            disabled
+          >
+        </label>
+        <label class="flex items-center mb-2">
+          <span class="mr-2">1e</span>
+          <span class="flex-grow">Add lines 1a and 1d</span>
+          <input
+            type="number"
+            size="10"
+            class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            x-bind:value="box1e()"
+            disabled
+          >
+        </label>
+        <label class="flex items-center mb-2">
+          <span class="mr-2">1f</span>
+          <span class="flex-grow">Enter the amount from Step 4(b) of the employee’s Form W-4</span>
+          <input
+            type="number"
+            size="10"
+            class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            x-model="box1f"
+          >
+        </label>
+        <label class="flex items-center mb-2">
+          <span class="mr-2">1g</span>
+          <span class="flex-grow">Divide line 1f by the number on line 1b</span>
+          <input
+            type="number"
+            size="10"
+            class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            x-bind:value="box1g()"
+            disabled
+          >
         </label>
         <label class="flex items-center mb-2">
           <span class="mr-2">1h</span>
@@ -25,10 +92,42 @@
             type="number"
             size="10"
             class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            x-model="wages"
-            disabled>
+            x-bind:value="box1h()"
+            disabled
+          >
         </label>
       </form>
     </div>
+
+    <script>
+      function data() {
+        return {
+          box1a: null,
+          box1b: null,
+          box1c: null,
+          box1d() {
+            return this.box1b && this.box1c && this.box1b != 0 ?
+              (this.box1c / this.box1b).toFixed() :
+              null
+          },
+          box1e() {
+            return this.box1a && this.box1d() ?
+              Number.parseFloat(this.box1a) + Number.parseFloat(this.box1d()) :
+              null
+          },
+          box1f: null,
+          box1g() {
+            return this.box1b && this.box1f && this.box1b != 0 ?
+              (this.box1f / this.box1b).toFixed() :
+              null
+          },
+          box1h() {
+            return this.box1e() && this.box1g() ?
+              this.box1e() - this.box1g() :
+              null
+          }
+        }
+      }
+    </script>
   </body>
 </html>
