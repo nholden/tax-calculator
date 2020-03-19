@@ -7,14 +7,28 @@
     <script src="bundle.js"></script>
   </head>
   <body class="antialiased">
-    <div class="container mx-auto">
-      <div x-data="{ open: false }">
-        <button @click="open = true">Open Dropdown</button>
-
-        <ul x-show="open" @click.away="open = false">
-          Dropdown Body
-        </ul>
-      </div>
+    <div class="container mx-auto" x-data="{ wages: null }">
+      <form class="my-2">
+        <label class="flex items-center mb-2">
+          <span class="mr-2">1a</span>
+          <span class="flex-grow">Enter the employee’s total taxable wages this payroll period</span>
+          <input
+            type="number"
+            size="10"
+            class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            x-model="wages">
+        </label>
+        <label class="flex items-center mb-2">
+          <span class="mr-2">1h</span>
+          <span class="flex-grow">Subtract line 1g from line 1e. If zero or less, enter -0-. This is the <strong>Adjusted Wage Amount</strong>.</span>
+          <input
+            type="number"
+            size="10"
+            class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            x-model="wages"
+            disabled>
+        </label>
+      </form>
     </div>
   </body>
 </html>
