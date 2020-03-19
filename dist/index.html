@@ -1,0 +1,16 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Tax Calculator</title>
+    <script src="main.js"></script>
+  </head>
+  <body>
+    <div x-data="{ open: false }">
+      <button @click="open = true">Open Dropdown</button>
+
+      <ul x-show="open" @click.away="open = false">
+        Dropdown Body
+      </ul>
+    </div>
+  </body>
+</html>
