@@ -194,7 +194,9 @@
           </label>
           <label class="flex items-center mb-2">
             <span class="w-4 mr-2">2f</span>
-            <span class="flex-grow">Add lines 2b and 2e</span>
+            <span class="flex-grow">
+              Add lines 2b and 2e. This is the <strong>Tentative Withholding Amount</strong>
+            </span>
             <input
               type="text"
               pattern="[\d\.]*"
@@ -248,8 +250,41 @@
             >
           </label>
         </fieldset>
-      </form>
 
+        <fieldset class="mb-4">
+          <legend class="text-lg font-semibold mb-2">Step 4. Figure the final amount to withhold</legend>
+          <label class="flex items-center mb-2">
+            <span class="w-4 mr-2">4a</span>
+            <span class="flex-grow">Enter the additional amount to withhold from Step 4(c) of the employee’s Form W-4</span>
+            <input
+              type="text"
+              pattern="[\d\.]*"
+              inputmode="decimal"
+              size="10"
+              class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              x-model="box4a"
+            >
+          </label>
+          <label class="flex items-center mb-2">
+            <span class="w-4 mr-2">4b</span>
+            <span class="flex-grow">
+              Add lines 3c and 4a.
+              <strong>
+                This is the amount to withhold from the employee’s wages this pay period
+              </strong>
+            </span>
+            <input
+              type="text"
+              pattern="[\d\.]*"
+              inputmode="decimal"
+              size="10"
+              class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              x-bind:value="box4b()"
+              disabled
+            >
+          </label>
+        </fieldset>
+      </form>
     </div>
 
     <script>
@@ -277,23 +312,23 @@
           box1c: null,
           box1d() {
             return this.box1b && this.box1c && this.box1b != 0 ?
-              (this.box1c / this.box1b).toFixed() :
+              (this.box1c / this.box1b).toFixed(2) :
               null
           },
           box1e() {
             return this.box1a && this.box1d() ?
-              Number.parseFloat(this.box1a) + Number.parseFloat(this.box1d()) :
+              (Number.parseFloat(this.box1a) + Number.parseFloat(this.box1d())).toFixed(2) :
               null
           },
           box1f: null,
           box1g() {
             return this.box1b && this.box1f && this.box1b != 0 ?
-              (this.box1f / this.box1b).toFixed() :
+              (this.box1f / this.box1b).toFixed(2) :
               null
           },
           box1h() {
             return this.box1e() && this.box1g() ?
-              Math.max(this.box1e() - this.box1g(), 0) :
+              Math.max(this.box1e() - this.box1g(), 0).toFixed(2) :
               null
           },
           withholdingRateSchedule() {
@@ -318,28 +353,34 @@
           },
           box2d() {
             return this.box1h() && this.box2a() ?
-              this.box1h() - this.box2a() :
+              (this.box1h() - this.box2a()).toFixed(2) :
               null
           },
           box2e() {
             return this.withholdingRateSchedule() && this.box2d() ?
-              (this.withholdingRateSchedule().marginalRate * this.box2d()).toFixed() :
+              (this.withholdingRateSchedule().marginalRate * this.box2d()).toFixed(2) :
               null
           },
           box2f() {
             return this.box2b() && this.box2e() ?
-              Number.parseFloat(this.box2b()) + Number.parseFloat(this.box2e()) :
+              (Number.parseFloat(this.box2b()) + Number.parseFloat(this.box2e())).toFixed(2) :
               null
           },
           box3a: null,
           box3b() {
             return this.box1b && this.box3a && this.box1b != 0 ?
-              (this.box3a / this.box1b).toFixed() :
+              (this.box3a / this.box1b).toFixed(2) :
               null
           },
           box3c() {
             return this.box2f() && this.box3b() ?
-              Math.max(this.box2f() - this.box3b(), 0) :
+              Math.max(this.box2f() - this.box3b(), 0).toFixed(2) :
+              null
+          },
+          box4a: null,
+          box4b() {
+            return this.box3c() && this.box4a ?
+              (Number.parseFloat(this.box3c()) + Number.parseFloat(this.box4a)).toFixed(2) :
               null
           },
         }
