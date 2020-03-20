@@ -8,11 +8,11 @@
     <link rel="icon" href="data:,">
   </head>
   <body class="antialiased">
-    <div class="container mx-auto px-2">
+    <div class="container max-w-4xl mx-auto px-2">
       <h1 class="text-3xl font-semibold my-2">
         IRS Publication 15-T: Federal Income Tax Withholding Methods
       </h1>
-      <h2 class="text-xl mb-6">
+      <h2 class="text-lg mb-6">
         Worksheet 4. Employer’s Withholding Worksheet for Percentage Method
         Tables for Manual Payroll Systems With Forms W-4 From 2020 or Later
       </h2>
@@ -20,102 +20,110 @@
       <form x-data="data()">
         <fieldset class="mb-4">
           <legend class="text-lg font-semibold mb-2">Step 1. Adjust the employee’s wage amount</legend>
-          <label class="flex items-center mb-2">
-            <span class="w-4 mr-2">1a</span>
-            <span class="flex-grow">Enter the employee’s total taxable wages this payroll period</span>
+          <label class="flex flex-wrap justify-between sm:flex-no-wrap items-center mb-4 sm:mb-2">
+            <div class="flex w-full mb-1 sm:w-4/6 sm:mb-0">
+              <span class="mr-2">1a</span>
+              <span>Enter the employee’s total taxable wages this payroll period</span>
+            </div>
             <input
               type="text"
               pattern="[\d\.]*"
               inputmode="decimal"
-              size="10"
-              class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              class="w-full sm:w-1/6 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               x-model="box1a"
             >
           </label>
-          <label class="flex items-center mb-2">
-            <span class="w-4 mr-2">1b</span>
-            <span class="flex-grow">Enter the number of pay periods you have per year</span>
+          <label class="flex flex-wrap justify-between sm:flex-no-wrap items-center mb-4 sm:mb-2">
+            <div class="flex w-full mb-1 sm:w-4/6 sm:mb-0">
+              <span class="mr-2">1b</span>
+              <span>Enter the number of pay periods you have per year</span>
+            </div>
             <input
               type="text"
               pattern="[\d\.]*"
               inputmode="decimal"
-              size="10"
-              class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              class="w-full sm:w-1/6 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               x-model="box1b"
             >
           </label>
-          <label class="flex items-center mb-2">
-            <span class="w-4 mr-2">1c</span>
-            <span class="flex-grow">Enter the amount from Step 4(a) of the employee’s Form W-4</span>
+          <label class="flex flex-wrap justify-between sm:flex-no-wrap items-center mb-4 sm:mb-2">
+            <div class="flex w-full mb-1 sm:w-4/6 sm:mb-0">
+              <span class="mr-2">1c</span>
+              <span>Enter the amount from Step 4(a) of the employee’s Form W-4</span>
+            </div>
             <input
               type="text"
               pattern="[\d\.]*"
               inputmode="decimal"
-              size="10"
-              class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              class="w-full sm:w-1/6 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               x-model="box1c"
             >
           </label>
-          <label class="flex items-center mb-2">
-            <span class="w-4 mr-2">1d</span>
-            <span class="flex-grow">Divide line 1c by the number on line 1b</span>
+          <label class="flex flex-wrap justify-between sm:flex-no-wrap items-center mb-4 sm:mb-2">
+            <div class="flex w-full mb-1 sm:w-4/6 sm:mb-0">
+              <span class="mr-2">1d</span>
+              <span>Divide line 1c by the number on line 1b</span>
+            </div>
             <input
               type="text"
               pattern="[\d\.]*"
               inputmode="decimal"
-              size="10"
-              class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              class="w-full sm:w-1/6 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               x-bind:value="box1d()"
               disabled
             >
           </label>
-          <label class="flex items-center mb-2">
-            <span class="w-4 mr-2">1e</span>
-            <span class="flex-grow">Add lines 1a and 1d</span>
+          <label class="flex flex-wrap justify-between sm:flex-no-wrap items-center mb-4 sm:mb-2">
+            <div class="flex w-full mb-1 sm:w-4/6 sm:mb-0">
+              <span class="mr-2">1e</span>
+              <span>Add lines 1a and 1d</span>
+            </div>
             <input
               type="text"
               pattern="[\d\.]*"
               inputmode="decimal"
-              size="10"
-              class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              class="w-full sm:w-1/6 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               x-bind:value="box1e()"
               disabled
             >
           </label>
-          <label class="flex items-center mb-2">
-            <span class="w-4 mr-2">1f</span>
-            <span class="flex-grow">Enter the amount from Step 4(b) of the employee’s Form W-4</span>
+          <label class="flex flex-wrap justify-between sm:flex-no-wrap items-center mb-4 sm:mb-2">
+            <div class="flex w-full mb-1 sm:w-4/6 sm:mb-0">
+              <span class="mr-2">1f</span>
+              <span>Enter the amount from Step 4(b) of the employee’s Form W-4</span>
+            </div>
             <input
               type="text"
               pattern="[\d\.]*"
               inputmode="decimal"
-              size="10"
-              class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              class="w-full sm:w-1/6 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               x-model="box1f"
             >
           </label>
-          <label class="flex items-center mb-2">
-            <span class="w-4 mr-2">1g</span>
-            <span class="flex-grow">Divide line 1f by the number on line 1b</span>
+          <label class="flex flex-wrap justify-between sm:flex-no-wrap items-center mb-4 sm:mb-2">
+            <div class="flex w-full mb-1 sm:w-4/6 sm:mb-0">
+              <span class="mr-2">1g</span>
+              <span>Divide line 1f by the number on line 1b</span>
+            </div>
             <input
               type="text"
               pattern="[\d\.]*"
               inputmode="decimal"
-              size="10"
-              class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              class="w-full sm:w-1/6 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               x-bind:value="box1g()"
               disabled
             >
           </label>
-          <label class="flex items-center mb-2">
-            <span class="w-4 mr-2">1h</span>
-            <span class="flex-grow">Subtract line 1g from line 1e. If zero or less, enter -0-. This is the <strong>Adjusted Wage Amount</strong>.</span>
+          <label class="flex flex-wrap justify-between sm:flex-no-wrap items-center mb-4 sm:mb-2">
+            <div class="flex w-full mb-1 sm:w-4/6 sm:mb-0">
+              <span class="mr-2">1h</span>
+              <span>Subtract line 1g from line 1e. If zero or less, enter -0-. This is the <strong>Adjusted Wage Amount</strong>.</span>
+            </div>
             <input
               type="text"
               pattern="[\d\.]*"
               inputmode="decimal"
-              size="10"
-              class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              class="w-full sm:w-1/6 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               x-bind:value="box1h()"
               disabled
             >
@@ -127,82 +135,88 @@
           <p class="italic text-gray-700 mb-2">
             Currently assumes W-4 from 2020 or later, semimonthly payroll period, checkbox is checked, married filing jointly.
           </p>
-          <label class="flex items-center mb-2">
-            <span class="w-4 mr-2">2a</span>
-            <span class="flex-grow">Column A from withholding rate schedule</span>
+          <label class="flex flex-wrap justify-between sm:flex-no-wrap items-center mb-4 sm:mb-2">
+            <div class="flex w-full mb-1 sm:w-4/6 sm:mb-0">
+              <span class="mr-2">2a</span>
+              <span>Column A from withholding rate schedule</span>
+            </div>
             <input
               type="text"
               pattern="[\d\.]*"
               inputmode="decimal"
-              size="10"
-              class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              class="w-full sm:w-1/6 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               x-bind:value="box2a()"
               disabled
             >
           </label>
-          <label class="flex items-center mb-2">
-            <span class="w-4 mr-2">2b</span>
-            <span class="flex-grow">Column C from withholding rate schedule</span>
+          <label class="flex flex-wrap justify-between sm:flex-no-wrap items-center mb-4 sm:mb-2">
+            <div class="flex w-full mb-1 sm:w-4/6 sm:mb-0">
+              <span class="mr-2">2b</span>
+              <span>Column C from withholding rate schedule</span>
+            </div>
             <input
               type="text"
               pattern="[\d\.]*"
               inputmode="decimal"
-              size="10"
-              class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              class="w-full sm:w-1/6 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               x-bind:value="box2b()"
               disabled
             >
           </label>
-          <label class="flex items-center mb-2">
-            <span class="w-4 mr-2">2c</span>
-            <span class="flex-grow">Column D from withholding rate schedule</span>
+          <label class="flex flex-wrap justify-between sm:flex-no-wrap items-center mb-4 sm:mb-2">
+            <div class="flex w-full mb-1 sm:w-4/6 sm:mb-0">
+              <span class="mr-2">2c</span>
+              <span>Column D from withholding rate schedule</span>
+            </div>
             <input
               type="text"
               pattern="[\d\.%]*"
               inputmode="decimal"
-              size="10"
-              class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              class="w-full sm:w-1/6 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               x-bind:value="box2c()"
               disabled
             >
           </label>
-          <label class="flex items-center mb-2">
-            <span class="w-4 mr-2">2d</span>
-            <span class="flex-grow">Subtract line 2a from line 1h</span>
+          <label class="flex flex-wrap justify-between sm:flex-no-wrap items-center mb-4 sm:mb-2">
+            <div class="flex w-full mb-1 sm:w-4/6 sm:mb-0">
+              <span class="mr-2">2d</span>
+              <span>Subtract line 2a from line 1h</span>
+            </div>
             <input
               type="text"
               pattern="[\d\.]*"
               inputmode="decimal"
-              size="10"
-              class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              class="w-full sm:w-1/6 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               x-bind:value="box2d()"
               disabled
             >
           </label>
-          <label class="flex items-center mb-2">
-            <span class="w-4 mr-2">2e</span>
-            <span class="flex-grow">Multiply the amount on line 2d by the percentage on line 2c</span>
+          <label class="flex flex-wrap justify-between sm:flex-no-wrap items-center mb-4 sm:mb-2">
+            <div class="flex w-full mb-1 sm:w-4/6 sm:mb-0">
+              <span class="mr-2">2e</span>
+              <span>Multiply the amount on line 2d by the percentage on line 2c</span>
+            </div>
             <input
               type="text"
               pattern="[\d\.]*"
               inputmode="decimal"
-              size="10"
-              class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              class="w-full sm:w-1/6 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               x-bind:value="box2e()"
               disabled
             >
           </label>
-          <label class="flex items-center mb-2">
-            <span class="w-4 mr-2">2f</span>
-            <span class="flex-grow">
-              Add lines 2b and 2e. This is the <strong>Tentative Withholding Amount</strong>
-            </span>
+          <label class="flex flex-wrap justify-between sm:flex-no-wrap items-center mb-4 sm:mb-2">
+            <div class="flex w-full mb-1 sm:w-4/6 sm:mb-0">
+              <span class="mr-2">2f</span>
+              <span>
+                Add lines 2b and 2e. This is the <strong>Tentative Withholding Amount</strong>
+              </span>
+            </div>
             <input
               type="text"
               pattern="[\d\.]*"
               inputmode="decimal"
-              size="10"
-              class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              class="w-full sm:w-1/6 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               x-bind:value="box2f()"
               disabled
             >
@@ -211,40 +225,44 @@
 
         <fieldset class="mb-4">
           <legend class="text-lg font-semibold mb-2">Step 3. Account for tax credits</legend>
-          <label class="flex items-center mb-2">
-            <span class="w-4 mr-2">3a</span>
-            <span class="flex-grow">Enter the amount from Step 3 of the employee’s Form W-4</span>
+          <label class="flex flex-wrap justify-between sm:flex-no-wrap items-center mb-4 sm:mb-2">
+            <div class="flex w-full mb-1 sm:w-4/6 sm:mb-0">
+              <span class="mr-2">3a</span>
+              <span>Enter the amount from Step 3 of the employee’s Form W-4</span>
+            </div>
             <input
               type="text"
               pattern="[\d\.]*"
               inputmode="decimal"
-              size="10"
-              class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              class="w-full sm:w-1/6 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               x-model="box3a"
             >
           </label>
-          <label class="flex items-center mb-2">
-            <span class="w-4 mr-2">3b</span>
-            <span class="flex-grow">Divide the amount on line 3a by the number of pay periods on line 1b</span>
+          <label class="flex flex-wrap justify-between sm:flex-no-wrap items-center mb-4 sm:mb-2">
+            <div class="flex w-full mb-1 sm:w-4/6 sm:mb-0">
+              <span class="mr-2">3b</span>
+              <span>Divide the amount on line 3a by the number of pay periods on line 1b</span>
+            </div>
             <input
               type="text"
               pattern="[\d\.]*"
               inputmode="decimal"
               size="10"
-              class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              class="w-full sm:w-1/6 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               x-bind:value="box3b()"
               disabled
             >
           </label>
-          <label class="flex items-center mb-2">
-            <span class="w-4 mr-2">3c</span>
-            <span class="flex-grow">Subtract line 3b from line 2f. If zero or less, enter -0-</span>
+          <label class="flex flex-wrap justify-between sm:flex-no-wrap items-center mb-4 sm:mb-2">
+            <div class="flex w-full mb-1 sm:w-4/6 sm:mb-0">
+              <span class="mr-2">3c</span>
+              <span>Subtract line 3b from line 2f. If zero or less, enter -0-</span>
+            </div>
             <input
               type="text"
               pattern="[\d\.]*"
               inputmode="decimal"
-              size="10"
-              class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              class="w-full sm:w-1/6 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               x-bind:value="box3c()"
               disabled
             >
@@ -253,32 +271,35 @@
 
         <fieldset class="mb-4">
           <legend class="text-lg font-semibold mb-2">Step 4. Figure the final amount to withhold</legend>
-          <label class="flex items-center mb-2">
-            <span class="w-4 mr-2">4a</span>
-            <span class="flex-grow">Enter the additional amount to withhold from Step 4(c) of the employee’s Form W-4</span>
+          <label class="flex flex-wrap justify-between sm:flex-no-wrap items-center mb-4 sm:mb-2">
+            <div class="flex w-full mb-1 sm:w-4/6 sm:mb-0">
+              <span class="mr-2">4a</span>
+              <span>Enter the additional amount to withhold from Step 4(c) of the employee’s Form W-4</span>
+            </div>
             <input
               type="text"
               pattern="[\d\.]*"
               inputmode="decimal"
-              size="10"
-              class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              class="w-full sm:w-1/6 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               x-model="box4a"
             >
           </label>
-          <label class="flex items-center mb-2">
-            <span class="w-4 mr-2">4b</span>
-            <span class="flex-grow">
-              Add lines 3c and 4a.
-              <strong>
-                This is the amount to withhold from the employee’s wages this pay period
-              </strong>
+          <label class="flex flex-wrap justify-between sm:flex-no-wrap items-center mb-4 sm:mb-2">
+            <div class="flex w-full mb-1 sm:w-4/6 sm:mb-0">
+              <span class="mr-2">4b</span>
+              <span>
+                Add lines 3c and 4a.
+                <strong>
+                  This is the amount to withhold from the employee’s wages this pay period
+                </strong>
+              </span>
+            </div>
             </span>
             <input
               type="text"
               pattern="[\d\.]*"
               inputmode="decimal"
-              size="10"
-              class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              class="w-full sm:w-1/6 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               x-bind:value="box4b()"
               disabled
             >
