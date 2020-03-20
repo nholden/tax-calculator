@@ -327,83 +327,43 @@
           }).slice(-1)[0]
         }
 
+        function addIfPresent(a, b) {
+          return a && b ? (Number.parseFloat(a) + Number.parseFloat(b)).toFixed(2) : null
+        }
+
+        function subtractOrZeroIfPresent(a, b) {
+          return a && b ? Math.max(a - b, 0).toFixed(2) : null
+        }
+
+        function multiplyIfPresent(a, b) {
+          return a && b ? (a * b).toFixed(2) : null
+        }
+
+        function divideIfPresent(a, b) {
+          return a && b && b != 0 ? (a / b).toFixed(2) : null
+        }
+
         return {
           box1a: null,
           box1b: null,
           box1c: null,
-          box1d() {
-            return this.box1b && this.box1c && this.box1b != 0 ?
-              (this.box1c / this.box1b).toFixed(2) :
-              null
-          },
-          box1e() {
-            return this.box1a && this.box1d() ?
-              (Number.parseFloat(this.box1a) + Number.parseFloat(this.box1d())).toFixed(2) :
-              null
-          },
+          box1d() { return divideIfPresent(this.box1c, this.box1b) },
+          box1e() { return addIfPresent(this.box1a, this.box1d()) },
           box1f: null,
-          box1g() {
-            return this.box1b && this.box1f && this.box1b != 0 ?
-              (this.box1f / this.box1b).toFixed(2) :
-              null
-          },
-          box1h() {
-            return this.box1e() && this.box1g() ?
-              Math.max(this.box1e() - this.box1g(), 0).toFixed(2) :
-              null
-          },
-          withholdingRateSchedule() {
-            return this.box1h() ?
-              withholdingRateScheduleForWage(this.box1h()) :
-              null
-          },
-          box2a() {
-            return this.withholdingRateSchedule() ?
-              this.withholdingRateSchedule().minimumWage :
-              null
-          },
-          box2b() {
-            return this.withholdingRateSchedule() ?
-              this.withholdingRateSchedule().tentativeWithholding :
-              null
-          },
-          box2c() {
-            return this.withholdingRateSchedule() ?
-              `${this.withholdingRateSchedule().marginalRate * 100}%` :
-              null
-          },
-          box2d() {
-            return this.box1h() && this.box2a() ?
-              (this.box1h() - this.box2a()).toFixed(2) :
-              null
-          },
-          box2e() {
-            return this.withholdingRateSchedule() && this.box2d() ?
-              (this.withholdingRateSchedule().marginalRate * this.box2d()).toFixed(2) :
-              null
-          },
-          box2f() {
-            return this.box2b() && this.box2e() ?
-              (Number.parseFloat(this.box2b()) + Number.parseFloat(this.box2e())).toFixed(2) :
-              null
-          },
+          box1g() { return divideIfPresent(this.box1f, this.box1b) },
+          box1h() { return subtractOrZeroIfPresent(this.box1e(), this.box1g()) },
+          withholdingRateSchedule() { return this.box1h() ? withholdingRateScheduleForWage(this.box1h()) : null },
+          box2a() { return this.withholdingRateSchedule() ? this.withholdingRateSchedule().minimumWage : null },
+          box2b() { return this.withholdingRateSchedule() ? this.withholdingRateSchedule().tentativeWithholding : null },
+          box2c() { return this.withholdingRateSchedule() ? `${this.withholdingRateSchedule().marginalRate * 100}%` : null },
+          box2d() { return subtractOrZeroIfPresent(this.box1h(), this.box2a()) },
+          box2e() { return this.withholdingRateSchedule() ? multiplyIfPresent(this.box2d(), this.withholdingRateSchedule().marginalRate) : null },
+          box2f() { return addIfPresent(this.box2b(), this.box2e()) },
           box3a: null,
-          box3b() {
-            return this.box1b && this.box3a && this.box1b != 0 ?
-              (this.box3a / this.box1b).toFixed(2) :
-              null
-          },
-          box3c() {
-            return this.box2f() && this.box3b() ?
-              Math.max(this.box2f() - this.box3b(), 0).toFixed(2) :
-              null
-          },
+          box3b() { return divideIfPresent(this.box3a, this.box1b) },
+          box3c() { return subtractOrZeroIfPresent(this.box2f(), this.box3b()) },
           box4a: null,
-          box4b() {
-            return this.box3c() && this.box4a ?
-              (Number.parseFloat(this.box3c()) + Number.parseFloat(this.box4a)).toFixed(2) :
-              null
-          },
+          box4b() { return addIfPresent(this.box3c(), this.box4a) },
         }
       }
     </script>
