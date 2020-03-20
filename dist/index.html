@@ -206,6 +206,48 @@
             >
           </label>
         </fieldset>
+
+        <fieldset class="mb-4">
+          <legend class="text-lg font-semibold mb-2">Step 3. Account for tax credits</legend>
+          <label class="flex items-center mb-2">
+            <span class="w-4 mr-2">3a</span>
+            <span class="flex-grow">Enter the amount from Step 3 of the employee’s Form W-4</span>
+            <input
+              type="text"
+              pattern="[\d\.]*"
+              inputmode="decimal"
+              size="10"
+              class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              x-model="box3a"
+            >
+          </label>
+          <label class="flex items-center mb-2">
+            <span class="w-4 mr-2">3b</span>
+            <span class="flex-grow">Divide the amount on line 3a by the number of pay periods on line 1b</span>
+            <input
+              type="text"
+              pattern="[\d\.]*"
+              inputmode="decimal"
+              size="10"
+              class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              x-bind:value="box3b()"
+              disabled
+            >
+          </label>
+          <label class="flex items-center mb-2">
+            <span class="w-4 mr-2">3c</span>
+            <span class="flex-grow">Subtract line 3b from line 2f. If zero or less, enter -0-</span>
+            <input
+              type="text"
+              pattern="[\d\.]*"
+              inputmode="decimal"
+              size="10"
+              class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              x-bind:value="box3c()"
+              disabled
+            >
+          </label>
+        </fieldset>
       </form>
 
     </div>
@@ -251,7 +293,7 @@
           },
           box1h() {
             return this.box1e() && this.box1g() ?
-              this.box1e() - this.box1g() :
+              Math.max(this.box1e() - this.box1g(), 0) :
               null
           },
           withholdingRateSchedule() {
@@ -288,7 +330,18 @@
             return this.box2b() && this.box2e() ?
               Number.parseFloat(this.box2b()) + Number.parseFloat(this.box2e()) :
               null
-          }
+          },
+          box3a: null,
+          box3b() {
+            return this.box1b && this.box3a && this.box1b != 0 ?
+              (this.box3a / this.box1b).toFixed() :
+              null
+          },
+          box3c() {
+            return this.box2f() && this.box3b() ?
+              Math.max(this.box2f() - this.box3b(), 0) :
+              null
+          },
         }
       }
     </script>
